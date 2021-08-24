@@ -1,6 +1,6 @@
 const mysql = require('mysql')
 
-const conexao = mysql.createConnection({
+const connection = mysql.createConnection({
     host: 'localhost',
     port: 3306,
     user: 'root',
@@ -8,4 +8,4 @@ const conexao = mysql.createConnection({
     database: 'agenda-petshop'
 })
 
-module.exports = conexao
+module.exports = connection
