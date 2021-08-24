@@ -1,14 +1,33 @@
-const Atendimento = require('../models/atendimentos')
+const Costumer = require('../models/atendimentos')
 
 module.exports = app => {
 
-    app.get('/atendimentos', (req, res) => res.send('Você esta na rota de atendimentos e está realizando um GET'))
+    app.get('/atendimentos', (req, res) => {
+        Costumer.list(res)
+    })
     
+    app.get('/atendimentos/:id', (req, res) => {
+        const id = parseInt(req.params.id)
+
+        Costumer.getId(id, res)
+    })
 
     app.post('/atendimentos', (req, res) => {
-       const atendimento = req.body
+       const costumer = req.body
 
-       Atendimento.adiciona(atendimento)
-        res.send('POST atendimento')
+       Costumer.addCostumer(costumer, res)
+    })
+
+    app.patch('/atendimentos/:id', (req, res) => {
+        const id = parseInt(req.params.id)
+        const values = req.body
+
+        Costumer.updateCostumer(id, values, res)
+    })
+
+    app.delete('/atendimentos/:id', (req, res) => {
+        const id = parseInt(req.params.id)
+
+        Costumer.deleteCostumer(id, res)
     })
 }
